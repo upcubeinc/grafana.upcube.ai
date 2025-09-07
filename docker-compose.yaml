@@ -6,24 +6,28 @@ services:
     container_name: grafana
     restart: unless-stopped
     ports:
-      - "12026:3000"
+      - "12026:3000"   # Internal port for Coolify; Coolify will handle SSL/HTTPS
     environment:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin123
-      GF_SERVER_DOMAIN: 15.204.240.98
-      GF_SERVER_ROOT_URL: http://15.204.240.98:12026/
-      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+
+      # 🌍 Domain & URL for Grafana
+      GF_SERVER_DOMAIN: weather.upcube.ai
+      GF_SERVER_ROOT_URL: https://weather.upcube.ai/
+      GF_SERVER_SERVE_FROM_SUB_PATH: "false"
 
       # 🔑 Allow embedding Grafana in iframes
       GF_SECURITY_ALLOW_EMBEDDING: "true"
+      GF_SECURITY_COOKIE_SECURE: "true"
+      GF_SECURITY_COOKIE_SAMESITE: none
 
-      # 🔑 Enable anonymous access (no login screen)
+      # 👥 Enable anonymous access (no login screen)
       GF_AUTH_ANONYMOUS_ENABLED: "true"
       GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
       GF_AUTH_DISABLE_LOGIN_FORM: "true"
       GF_AUTH_BASIC_ENABLED: "false"
 
-      # 🔑 Set Weather dashboard as default
+      # 📊 Set Weather dashboard as default
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards-json/weather.json
 
     volumes:
@@ -32,6 +36,7 @@ services:
 
 volumes:
   grafana_data:
+
 
 
 
