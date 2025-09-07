@@ -8,23 +8,23 @@ services:
     ports:
       - "12026:3000"
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin123
-      - GF_SERVER_DOMAIN=15.204.240.98
-      - GF_SERVER_ROOT_URL=http://15.204.240.98:12026/
-      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin123
+      GF_SERVER_DOMAIN: 15.204.240.98
+      GF_SERVER_ROOT_URL: http://15.204.240.98:12026/
+      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
 
       # 🔑 Allow embedding Grafana in iframes
-      - GF_SECURITY_ALLOW_EMBEDDING=true
+      GF_SECURITY_ALLOW_EMBEDDING: "true"
 
       # 🔑 Enable anonymous access (no login screen)
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
-      - GF_AUTH_BASIC_ENABLED=false
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_BASIC_ENABLED: "false"
 
       # 🔑 Set Weather dashboard as default
-      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards-json/weather.json
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards-json/weather.json
 
     volumes:
       - grafana_data:/var/lib/grafana
@@ -32,5 +32,6 @@ services:
 
 volumes:
   grafana_data:
+
 
 
