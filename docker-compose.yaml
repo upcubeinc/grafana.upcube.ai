@@ -21,4 +21,11 @@ services:
       - GF_AUTH_BASIC_ENABLED=false
 
       # 🔑 Set Weather dashboard as default
-      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH/etc/grafana/provisioning/dashboards-json/weather.json
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards-json/weather.json
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./provisioning:/etc/grafana/provisioning
+
+volumes:
+  grafana_data:
+
